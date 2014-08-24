@@ -132,8 +132,10 @@ class ViewController: UIViewController  {
         
         //Once hues are determined, similar ranges can be calculated for brightness and saturation.
         //Brightness depends on the hour. At 3am, the back is dark and the front is light; at 3pm the back is light and front is dark.
-        var distanceFrom3AM = min(abs(components.hour - 3), abs(components.hour - 27))
-        var backBrightness = CGFloat(distanceFrom3AM) / 12.0
+        let darkHour = 3
+        var diff = abs(darkHour - components.hour)
+        var distanceFromDarkHour = (diff < 12) ? diff : 24 - diff
+        var backBrightness = CGFloat(distanceFromDarkHour) / 12.0
         var frontBrightness = 1.0 - backBrightness
         
         //Saturation decreases as brightness increases. The range of possible saturations expands as the range of possible hues contracts, and vice-versa.
@@ -387,7 +389,7 @@ class ViewController: UIViewController  {
     
     let phiInverse: CGFloat = 0.618
     
-    let repeatCount: CGFloat = 10000 //for repeating animations
+    let repeatCount: Float = 10000 //for repeating animations
 
     
     //#pragma mark ViewController management
