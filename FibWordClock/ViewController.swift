@@ -50,15 +50,6 @@ class ViewController: UIViewController  {
     
     //#pragma mark UI
     
-    func installRootWordView() {
-        rootWordView?.removeFromSuperview()
-        rootWordView = viewForWord(rootWord, depth: timeChunks.count - 1)
-        wordContainerView.addSubview(rootWordView!)
-        wordContainerView.autolayoutInsetSubview(rootWordView!, insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-        rootWordView!.layer.borderWidth = 1.0
-        rootWordView!.hidden = true
-    }
-    
     func setupUI() {
         
         refreshColors()
@@ -82,6 +73,15 @@ class ViewController: UIViewController  {
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("receiveTimer:"), userInfo: nil, repeats: true)
         
         if let uwRootWordView = rootWordView { uwRootWordView.hidden = false }
+    }
+    
+    func installRootWordView() {
+        rootWordView?.removeFromSuperview()
+        rootWordView = viewForWord(rootWord, depth: timeChunks.count - 1)
+        wordContainerView.addSubview(rootWordView!)
+        wordContainerView.autolayoutInsetSubview(rootWordView!, insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        rootWordView!.layer.borderWidth = 1.0
+        rootWordView!.hidden = true
     }
     
     func viewForWord(word: FibonacciWord, depth: Int) -> UIView {
@@ -173,7 +173,7 @@ class ViewController: UIViewController  {
             }
         }
         
-        //Adjust the colors of the UI stuff
+        //Adjust the colors of various UI components
         let backColor = UIColor(hue: hourHue, saturation: backSaturation, brightness: backBrightness, alpha: 1)
         let frontColor = UIColor(hue: minuteHue, saturation: frontSaturation, brightness: frontBrightness, alpha: 1)
         self.view.backgroundColor = backColor
@@ -196,6 +196,8 @@ class ViewController: UIViewController  {
     
     func receiveTimer(timer: NSTimer) {
         refreshLabels()
+        
+        //If a new minute has begun, refreshColors()
         let components = NSCalendar.currentCalendar().components(.CalendarUnitSecond, fromDate: NSDate.date())
         if components.second == 0 {
             refreshColors()
@@ -207,7 +209,10 @@ class ViewController: UIViewController  {
     /*
     * Add animations to the wordView located at the specified indexPath.
         The view should repeatedly rotate 360 degrees, and fade its alpha in and out.
-        The period of the view's animation cycle is determined by its corresponding FibonacciWord. The word's position within self.rootWord's subword hiearchy tells us how fast or slow to play the animation. Words located toward the root cycle slower, whereas those toward the "leaves" of the hierarchy cycle faster. The exact cycle-time is determined by grabbing the appropriate entry from self.timeChunks.
+        The period of the view's animation cycle is determined by its corresponding FibonacciWord. 
+        The word's position within self.rootWord's subword hiearchy tells us how fast or slow to play the animation.
+        Words located toward the root will cycle slower, whereas those toward the "leaves" of the hierarchy cycle faster. 
+        The exact cycle-time is determined by grabbing the appropriate entry from self.timeChunks.
     */
     func addAnimations(#indexPath: [Int], synchronizedCurrentTime: NSDate) {
         if let wordView = wordViews[indexPath] as? UIView {
@@ -215,7 +220,7 @@ class ViewController: UIViewController  {
                 
                 wordView.layer.removeAllAnimations()
                 
-                var timeChunk = timeChunks[indexPath.count] //There are a lot of variables here that could be constants, but the current debugger for XCode6 won't let us inspect the values of constants.
+                var timeChunk = timeChunks[indexPath.count] //There are a lot of variables here that could be constants, but I'm using variables for debugging purposes. The current debugger for XCode6 won't let us inspect the values of constants.
                 var fullCycleDuration = Double(timeChunk.size) * timeChunk.calendarUnit.timeInterval()
                 var fullCircle = CGFloat(M_PI * 2.0)
 
