@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E9495E719A7EFCE00943C83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9495E619A7EFCE00943C83 /* AppDelegate.swift */; };
+		8E9495E919A7EFCE00943C83 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9495E819A7EFCE00943C83 /* ViewController.swift */; };
+		8E9495EC19A7EFCE00943C83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E9495EA19A7EFCE00943C83 /* Main.storyboard */; };
+		8E9495EE19A7EFCE00943C83 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E9495ED19A7EFCE00943C83 /* Images.xcassets */; };
+		8E9495FA19A7EFCE00943C83 /* FibWordClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9495F919A7EFCE00943C83 /* FibWordClockTests.swift */; };
+		8E94960419A7EFF600943C83 /* FibonacciWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94960319A7EFF600943C83 /* FibonacciWord.swift */; };
+		8E94960619A7F0F900943C83 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94960519A7F0F900943C83 /* Extensions.swift */; };
+		8EFBB17419A95065004560F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EFBB17319A95065004560F0 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8E9495F419A7EFCE00943C83 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E9495D919A7EFCE00943C83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E9495E019A7EFCE00943C83;
+			remoteInfo = FibWordClock;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8E9495E119A7EFCE00943C83 /* FibWordClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FibWordClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E9495E519A7EFCE00943C83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E9495E619A7EFCE00943C83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8E9495E819A7EFCE00943C83 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8E9495EB19A7EFCE00943C83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8E9495ED19A7EFCE00943C83 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8E9495F319A7EFCE00943C83 /* FibWordClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FibWordClockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E9495F819A7EFCE00943C83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E9495F919A7EFCE00943C83 /* FibWordClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibWordClockTests.swift; sourceTree = "<group>"; };
+		8E94960319A7EFF600943C83 /* FibonacciWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FibonacciWord.swift; sourceTree = "<group>"; };
+		8E94960519A7F0F900943C83 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8EFBB17319A95065004560F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E9495DE19A7EFCE00943C83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EFBB17419A95065004560F0 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E9495F019A7EFCE00943C83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E9495D819A7EFCE00943C83 = {
+			isa = PBXGroup;
+			children = (
+				8EFBB17319A95065004560F0 /* QuartzCore.framework */,
+				8E9495E319A7EFCE00943C83 /* FibWordClock */,
+				8E9495F619A7EFCE00943C83 /* FibWordClockTests */,
+				8E9495E219A7EFCE00943C83 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8E9495E219A7EFCE00943C83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E9495E119A7EFCE00943C83 /* FibWordClock.app */,
+				8E9495F319A7EFCE00943C83 /* FibWordClockTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E9495E319A7EFCE00943C83 /* FibWordClock */ = {
+			isa = PBXGroup;
+			children = (
+				8E9495E619A7EFCE00943C83 /* AppDelegate.swift */,
+				8E94960319A7EFF600943C83 /* FibonacciWord.swift */,
+				8E9495E819A7EFCE00943C83 /* ViewController.swift */,
+				8E94960519A7F0F900943C83 /* Extensions.swift */,
+				8E9495EA19A7EFCE00943C83 /* Main.storyboard */,
+				8E9495ED19A7EFCE00943C83 /* Images.xcassets */,
+				8E9495E419A7EFCE00943C83 /* Supporting Files */,
+			);
+			path = FibWordClock;
+			sourceTree = "<group>";
+		};
+		8E9495E419A7EFCE00943C83 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E9495E519A7EFCE00943C83 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8E9495F619A7EFCE00943C83 /* FibWordClockTests */ = {
+			isa = PBXGroup;
+			children = (
+				8E9495F919A7EFCE00943C83 /* FibWordClockTests.swift */,
+				8E9495F719A7EFCE00943C83 /* Supporting Files */,
+			);
+			path = FibWordClockTests;
+			sourceTree = "<group>";
+		};
+		8E9495F719A7EFCE00943C83 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E9495F819A7EFCE00943C83 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8E9495E019A7EFCE00943C83 /* FibWordClock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E9495FD19A7EFCE00943C83 /* Build configuration list for PBXNativeTarget "FibWordClock" */;
+			buildPhases = (
+				8E9495DD19A7EFCE00943C83 /* Sources */,
+				8E9495DE19A7EFCE00943C83 /* Frameworks */,
+				8E9495DF19A7EFCE00943C83 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FibWordClock;
+			productName = FibWordClock;
+			productReference = 8E9495E119A7EFCE00943C83 /* FibWordClock.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8E9495F219A7EFCE00943C83 /* FibWordClockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E94960019A7EFCE00943C83 /* Build configuration list for PBXNativeTarget "FibWordClockTests" */;
+			buildPhases = (
+				8E9495EF19A7EFCE00943C83 /* Sources */,
+				8E9495F019A7EFCE00943C83 /* Frameworks */,
+				8E9495F119A7EFCE00943C83 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E9495F519A7EFCE00943C83 /* PBXTargetDependency */,
+			);
+			name = FibWordClockTests;
+			productName = FibWordClockTests;
+			productReference = 8E9495F319A7EFCE00943C83 /* FibWordClockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E9495D919A7EFCE00943C83 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = jesselevine;
+				TargetAttributes = {
+					8E9495E019A7EFCE00943C83 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					8E9495F219A7EFCE00943C83 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 8E9495E019A7EFCE00943C83;
+					};
+				};
+			};
+			buildConfigurationList = 8E9495DC19A7EFCE00943C83 /* Build configuration list for PBXProject "FibWordClock" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8E9495D819A7EFCE00943C83;
+			productRefGroup = 8E9495E219A7EFCE00943C83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E9495E019A7EFCE00943C83 /* FibWordClock */,
+				8E9495F219A7EFCE00943C83 /* FibWordClockTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8E9495DF19A7EFCE00943C83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E9495EC19A7EFCE00943C83 /* Main.storyboard in Resources */,
+				8E9495EE19A7EFCE00943C83 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E9495F119A7EFCE00943C83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E9495DD19A7EFCE00943C83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E94960419A7EFF600943C83 /* FibonacciWord.swift in Sources */,
+				8E9495E919A7EFCE00943C83 /* ViewController.swift in Sources */,
+				8E9495E719A7EFCE00943C83 /* AppDelegate.swift in Sources */,
+				8E94960619A7F0F900943C83 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E9495EF19A7EFCE00943C83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E9495FA19A7EFCE00943C83 /* FibWordClockTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8E9495F519A7EFCE00943C83 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E9495E019A7EFCE00943C83 /* FibWordClock */;
+			targetProxy = 8E9495F419A7EFCE00943C83 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8E9495EA19A7EFCE00943C83 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E9495EB19A7EFCE00943C83 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8E9495FB19A7EFCE00943C83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8E9495FC19A7EFCE00943C83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8E9495FE19A7EFCE00943C83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = FibWordClock/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8E9495FF19A7EFCE00943C83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = FibWordClock/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8E94960119A7EFCE00943C83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FibWordClock.app/FibWordClock";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FibWordClockTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		8E94960219A7EFCE00943C83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FibWordClock.app/FibWordClock";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FibWordClockTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E9495DC19A7EFCE00943C83 /* Build configuration list for PBXProject "FibWordClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E9495FB19A7EFCE00943C83 /* Debug */,
+				8E9495FC19A7EFCE00943C83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E9495FD19A7EFCE00943C83 /* Build configuration list for PBXNativeTarget "FibWordClock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E9495FE19A7EFCE00943C83 /* Debug */,
+				8E9495FF19A7EFCE00943C83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E94960019A7EFCE00943C83 /* Build configuration list for PBXNativeTarget "FibWordClockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E94960119A7EFCE00943C83 /* Debug */,
+				8E94960219A7EFCE00943C83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E9495D919A7EFCE00943C83 /* Project object */;
+}
