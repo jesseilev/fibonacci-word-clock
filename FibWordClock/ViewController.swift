@@ -48,6 +48,7 @@ class ViewController: UIViewController  {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    
     //#pragma mark UI
     
     func setupUI() {
@@ -84,6 +85,10 @@ class ViewController: UIViewController  {
         rootWordView!.hidden = true
     }
     
+    /**
+    * Creates and returns a UIView with a hierarchy of subviews that mimics the hiearchy of subwords of the FibonacciWord provided.
+    If the word has two subwords, the view for word.letterASubword will be positioned directly below the view for word.letterBSubword, and the ratio of their heights will be bHeight / aHeight = Phi (1.618.....). Otherwise, the view for word.letterBSubword will fill the entirety of its superview.
+    */
     func viewForWord(word: FibonacciWord, depth: Int) -> UIView {
         let wordView = UIView.autolayoutView()
         wordViews[word.indexPath] = wordView
@@ -131,8 +136,8 @@ class ViewController: UIViewController  {
         
         
         //Once hues are determined, similar ranges can be calculated for brightness and saturation.
-        //Brightness depends on the hour. At 3am, the back is dark and the front is light; at 3pm the back is light and front is dark.
-        let darkHour = 3
+        //Brightness depends on the hour. At 1:00 am, the back is dark and the front is light; at 1:00 pm the back is light and front is dark.
+        let darkHour = 1
         var diff = abs(darkHour - components.hour)
         var distanceFromDarkHour = (diff < 12) ? diff : 24 - diff
         var backBrightness = CGFloat(distanceFromDarkHour) / 12.0
