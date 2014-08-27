@@ -24,14 +24,14 @@ extension UIView {
         if attribute != .CenterX && attribute != .CenterY {
             return
         }
-        if !self.subviews.bridgeToObjectiveC().containsObject(subview) {
+        if !(self.subviews as NSArray).containsObject(subview) {
             self.addSubview(subview)
         }
         self.addConstraint(NSLayoutConstraint(item: subview, attribute: attribute, relatedBy: .Equal, toItem: self, attribute: attribute, multiplier: 1, constant: 0))
     }
     
     func autolayoutInsetSubview(subview: UIView, insets: UIEdgeInsets) {
-        if !self.subviews.bridgeToObjectiveC().containsObject(subview) {
+        if !(self.subviews as NSArray).containsObject(subview) {
             self.addSubview(subview)
         }
         let subviewString = "subview"
@@ -47,7 +47,7 @@ extension UIView {
      * Builds constraints so that subview takes up as much room as possible without crossing self's edges (plus any extra padding specified)
      */
     func autolayoutFillContainerWithSubview(subview: UIView, var padding: CGFloat) {
-        if !self.subviews.bridgeToObjectiveC().containsObject(subview) {
+        if !(self.subviews as NSArray).containsObject(subview) {
             self.addSubview(subview)
         }
         padding = max(0, padding)
@@ -64,12 +64,10 @@ extension UIView {
     
     func autoLayoutSpaceSubviewsEvenly(subviews: [UIView], vertically: Bool) {
         for sub in subviews {
-            if !self.subviews.bridgeToObjectiveC().containsObject(sub) {
+        if !(self.subviews as NSArray).containsObject(sub) {
                 self.addSubview(sub)
             }
         }
-        
-        
     }
 }
 

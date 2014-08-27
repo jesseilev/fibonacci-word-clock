@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>47BF55E7-F3BD-4281-97B7-F13C9154A227</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FibWordClock</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>53FD37DD5438C937944A73E427747814DD76CDB1</key>
+		<string>https://github.com/jesseilev/fibonacci-word-clock.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>FibWordClock.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>53FD37DD5438C937944A73E427747814DD76CDB1</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jesseilev/fibonacci-word-clock.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>53FD37DD5438C937944A73E427747814DD76CDB1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>53FD37DD5438C937944A73E427747814DD76CDB1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>fibonacci-word-clock</string>
+		</dict>
+	</array>
+</dict>
+</plist>

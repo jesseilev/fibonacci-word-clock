@@ -11,9 +11,9 @@ import QuartzCore
 
 class ViewController: UIViewController  {
     
-    @IBOutlet var hourLabel: UILabel
-    @IBOutlet var secondsLabel: UILabel
-    @IBOutlet var wordContainerView: UIView
+    @IBOutlet var hourLabel: UILabel!
+    @IBOutlet var secondsLabel: UILabel!
+    @IBOutlet var wordContainerView: UIView!
     
     var rootWord = FibonacciWord.rootWord()
     weak var rootWordView: UIView?
@@ -113,7 +113,7 @@ class ViewController: UIViewController  {
                 wordView.addConstraint( NSLayoutConstraint(item: letterBSubview, attribute: .Width, relatedBy: .Equal, toItem: wordView, attribute: .Height, multiplier: phiInverse, constant: 0) )
             }
             
-            let blankOrLetterA = (!word.letterASubword) ? "" : "[\(letterAName)]-\(vs)-"
+            let blankOrLetterA = (word.letterASubword == nil) ? "" : "[\(letterAName)]-\(vs)-"
             var vFormatString = "V:|-\(vs)-[bSub]-\(vs)-\(blankOrLetterA)|"
             wordView.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat(vFormatString, options: .AlignAllCenterX, metrics: nil, views: viewNames) )
         }
@@ -271,8 +271,8 @@ class ViewController: UIViewController  {
                     repeatRotationAnim.delegate = self
                     repeatRotationAnim.setValue(wordView.layer, forKey: "layer")
                     
-                    animations += onceRotationAnim
-                    animations += repeatRotationAnim
+                    animations.append(onceRotationAnim)
+                    animations.append(repeatRotationAnim)
                 }
 
                 //Now for the alpha animations. Apply alpha animations to all views except for the ones at the very lowest-level, aka the ones with no subviews
@@ -296,7 +296,7 @@ class ViewController: UIViewController  {
                         oneTimeFadeInAnim!.toValue = layerColor.colorWithAlphaComponent(1).CGColor
                         oneTimeFadeInAnim!.autoreverses = true
                         oneTimeFadeInAnim!.duration = fadeInDuration
-                        animations += oneTimeFadeInAnim!
+                        animations.append(oneTimeFadeInAnim!)
                     }
                     
                     //In all cases, we must create a one-time alpha fade-out animation.
@@ -314,7 +314,7 @@ class ViewController: UIViewController  {
                     oneTimeFadeOutAnim.toValue = layerColor.colorWithAlphaComponent(0).CGColor
                     oneTimeFadeOutAnim.duration = fadeOutDuration
                     oneTimeFadeOutAnim.beginTime = fadeOutBegin
-                    animations += oneTimeFadeOutAnim
+                    animations.append(oneTimeFadeOutAnim)
                     
                     //Create a repeating alpha fade-in-out animation over the duration of 1 full cycle. Start at alpha = 0, and build up to 1 at halfway through the cycle, then autoreverse.
                     let repeatingAlphaAnim = CABasicAnimation(keyPath: "backgroundColor")
@@ -326,7 +326,7 @@ class ViewController: UIViewController  {
                     repeatingAlphaAnim.repeatCount = repeatCount
                     repeatingAlphaAnim.setValue("repeatingAlphaAnimation", forKey: "name")
                     
-                    animations += repeatingAlphaAnim
+                    animations.append(repeatingAlphaAnim)
                 }
                 
                 //If we have any animations, group them together and add them to the layer

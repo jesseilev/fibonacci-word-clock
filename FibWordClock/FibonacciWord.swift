@@ -20,7 +20,13 @@ Each FibonacciWord instance has a letter property whose value is either B or A. 
 |-B-|-A-|-B-|-B-|-A-|-B-|-A-|-B-|
 
 */
+
 class FibonacciWord {
+    
+    enum FibonacciLetter: Int {
+        case A = 1
+        case B = 0
+    }
     
     var letter: FibonacciLetter
     var superword: FibonacciWord?
@@ -31,7 +37,7 @@ class FibonacciWord {
         if let uwSuperword = self.superword {
             indexPath = uwSuperword.indexPath
             let myIndex: Int = (self.letter == .B) ? 0 : 1
-            indexPath += myIndex
+            indexPath.append(myIndex)
         }
     }
     
@@ -39,12 +45,12 @@ class FibonacciWord {
         return FibonacciWord(letter: .B, superword: nil)
     }
     
-    @lazy var letterBSubword: FibonacciWord = {
+    lazy var letterBSubword: FibonacciWord = {
         let bSub = FibonacciWord(letter: .B, superword: self)
         return bSub
     }()
     
-    @lazy var letterASubword: FibonacciWord? = {
+    lazy var letterASubword: FibonacciWord? = {
         var aSub: FibonacciWord?
         if self.letter == FibonacciLetter.B {
             aSub = FibonacciWord(letter: .A, superword: self)
@@ -52,9 +58,9 @@ class FibonacciWord {
         return aSub
     }()
     
-    @lazy var subwords: [FibonacciWord] = {
+    lazy var subwords: [FibonacciWord] = {
         var subs = [self.letterBSubword]
-        if let aSub = self.letterASubword { subs += aSub }
+        if let aSub = self.letterASubword { subs.append(aSub) }
         return subs
     }()
     
@@ -76,7 +82,7 @@ class FibonacciWord {
     */
     func subwordAtIndexPath(var indexPath: [Int]) -> FibonacciWord? {
         var subword: FibonacciWord? = self
-        if let firstIndex = indexPath.bridgeToObjectiveC().firstObject as? Int {
+        if let firstIndex = indexPath.first? {
             indexPath.removeAtIndex(0)
             subword = self[firstIndex]?.subwordAtIndexPath(indexPath)
         }
@@ -115,9 +121,5 @@ class FibonacciWord {
     
 }
 
-enum FibonacciLetter: Int {
-    case A = 1
-    case B = 0
-}
 
 
