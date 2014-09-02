@@ -22,6 +22,8 @@ class ViewController: UIViewController  {
     var timeChunks: [ (calendarUnit: NSCalendarUnit, size: Int) ] = [ (.CalendarUnitHour, 24), (.CalendarUnitHour, 12), (.CalendarUnitHour, 1), (.CalendarUnitMinute, 30), (.CalendarUnitMinute, 15), (.CalendarUnitMinute, 5), (.CalendarUnitMinute, 1), (.CalendarUnitSecond, 30), (.CalendarUnitSecond, 10), (.CalendarUnitSecond, 1) ]
     
     var timer: NSTimer?
+    
+    var currentDate: NSDate = NSDate.date()
 
     //#pragma mark VC Lifecycle
     
@@ -53,10 +55,11 @@ class ViewController: UIViewController  {
     
     func setupUI() {
         
+        currentDate = NSDate(timeIntervalSince1970: 23 * 3600 + 15 * 60)
+        
         refreshColors()
         refreshLabels()
 
-        let currentTime = NSDate.date() //NSDate(timeIntervalSince1970: 5.999 * 60 * 60 )
         for object in wordViews.allValues {
             if let wordView = object as? UIView {
                 let smallerDimension = min(wordView.frame.size.width, wordView.frame.size.height)
@@ -67,7 +70,7 @@ class ViewController: UIViewController  {
         for key in wordViews.allKeys {
             //Make a separate loop through wordViews for this; we want the animations to be created at similar time to each other
             if let indexPath = key as? [Int] {
-                addAnimations(indexPath: indexPath, synchronizedCurrentTime: currentTime)
+                addAnimations(indexPath: indexPath, synchronizedCurrentTime: currentDate)
             }
         }
         resumeAllLayerAnimations()
@@ -128,7 +131,7 @@ class ViewController: UIViewController  {
     */
     func refreshColors() {
         
-        let components = NSCalendar.currentCalendar().components( .HourCalendarUnit | .MinuteCalendarUnit | .SecondCalendarUnit, fromDate: NSDate.date())
+        let components = NSCalendar.currentCalendar().components( .HourCalendarUnit | .MinuteCalendarUnit | .SecondCalendarUnit, fromDate: currentDate)
         //hourHue and minuteHue get their values based on the current hour and minute.
         hourHue = 1.0 - CGFloat(components.hour % 12) / 12.0
         minuteHue = CGFloat(components.minute) / 60.0
@@ -151,7 +154,11 @@ class ViewController: UIViewController  {
         for (key, object) in wordViews {
             if let indexPath = key as? [Int] {
                 if let wordView = object as? UIView {
-                    let depthPct = CGFloat(indexPath.count) / CGFloat(timeChunks.count - 1)
+                    var bDepth = 0
+                    for letter in indexPath {
+                        if letter == 0 { ++bDepth }
+                    }
+                    let depthPct = CGFloat(bDepth) / CGFloat(timeChunks.count - 1)
                     let hue = hourHue + (depthPct * (minuteHue - hourHue) )
                     let brightness = backBrightness + (depthPct * (frontBrightness - backBrightness))
                     let saturation = backSaturation + (depthPct * (frontSaturation - backSaturation))
@@ -196,22 +203,37 @@ class ViewController: UIViewController  {
         secondsLabel.hidden = false
         let formatter = NSDateFormatter()
         formatter.dateFormat = "h:mm a"
-        hourLabel.text = formatter.stringFromDate(NSDate.date())
+        hourLabel.text = formatter.stringFromDate(currentDate)
         formatter.dateFormat = "ss"
-        secondsLabel.text = "and " + formatter.stringFromDate(NSDate.date())
+        secondsLabel.text = "and " + formatter.stringFromDate(currentDate)
     }
     
     func receiveTimer(timer: NSTimer) {
+        currentDate = NSDate(timeInterval: timer.timeInterval, sinceDate: currentDate)
         refreshLabels()
         
         //If a new minute has begun, refreshColors()
-        let components = NSCalendar.currentCalendar().components(.CalendarUnitSecond, fromDate: NSDate.date())
+        let components = NSCalendar.currentCalendar().components(.CalendarUnitSecond, fromDate: currentDate)
         if components.second == 0 {
             refreshColors()
         }
     }
     
     //#pragma mark Animations
+    
+    func rotateViewAtIndexPath(indexPath: [Int], targetTime: NSDate) {
+        var timeChunk = timeChunks[indexPath.count]
+        var fullCycleDuration = Double(timeChunk.size) * timeChunk.calendarUnit.timeInterval()
+        var timeComponents = NSCalendar.currentCalendar().components( .HourCalendarUnit | .MinuteCalendarUnit | .SecondCalendarUnit, fromDate: targetTime)
+        var intervalCompleted = intervalFromComponents(timeComponents, timeChunk: timeChunk) % fullCycleDuration
+        var percentCompleted = intervalCompleted / fullCycleDuration
+        if let wordView = wordViews[indexPath] as? UIView {
+            if let word = rootWord.subwordAtIndexPath(indexPath) {
+                wordView.transform = CGAffineTransformMakeRotation( CGFloat(percentCompleted * 2.0 * M_PI) )
+            }
+        }
+
+    }
     
     /*
     * Add animations to the wordView located at the specified indexPath.
