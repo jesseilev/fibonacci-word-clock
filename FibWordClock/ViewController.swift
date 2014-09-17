@@ -55,7 +55,7 @@ class ViewController: UIViewController  {
     
     func setupUI() {
         
-        currentDate = NSDate(timeIntervalSince1970: 23 * 3600 + 15 * 60)
+        currentDate = NSDate(timeIntervalSince1970: 10 * 3600 + 59 * 60)
         
         refreshColors()
         refreshLabels()
@@ -124,48 +124,64 @@ class ViewController: UIViewController  {
         return wordView
     }
     
-    var hourHue: CGFloat = 0.0
-    var minuteHue: CGFloat = 0.0
     /**
     * Use the current time to determine the wordViews' colors.
     */
     func refreshColors() {
         
         let components = NSCalendar.currentCalendar().components( .HourCalendarUnit | .MinuteCalendarUnit | .SecondCalendarUnit, fromDate: currentDate)
-        //hourHue and minuteHue get their values based on the current hour and minute.
-        hourHue = 1.0 - CGFloat(components.hour % 12) / 12.0
-        minuteHue = CGFloat(components.minute) / 60.0
-        //We now use hourHue and minuteHue to form a range of possible hues. All views will be colored with a hue somewhere in between the two values. Colors toward the back (rootView) will have a hue approaching hourHue, and colors toward the front will have a hue approaching minuteHue.
         
+        var timeSinceTwelve = intervalFromComponents( components, timeChunk: (NSCalendarUnit.HourCalendarUnit, 12) )
+        //backHue gets its value from the current time modulo 12 hours
+        var backHue = CGFloat(timeSinceTwelve) / CGFloat(12 * 60 * 60)
+        //frontHue's value depends on the current minute. At the hour mark, frontHue will be on the opposite side of backHue on the color wheel. At 30 minutes past, frontHue == backHue, then aftewards its begins to move toward the opposite end again
+        var frontHue = (backHue + CGFloat(0.51) + ( CGFloat(components.minute) / 60.0 ) ) % 1.0
         
         //Once hues are determined, similar ranges can be calculated for brightness and saturation.
-        //Brightness depends on the hour. At 1:00 am, the back is dark and the front is light; at 1:00 pm the back is light and front is dark.
-        let darkHour = 1
+        //Brightness depends on the hour. At 12:00 am, the back is dark and the front is light; at 1:00 pm the back is light and front is dark.
+        let darkHour = 0
         var diff = abs(darkHour - components.hour)
         var distanceFromDarkHour = (diff < 12) ? diff : 24 - diff
         var backBrightness = CGFloat(distanceFromDarkHour) / 12.0
         var frontBrightness = 1.0 - backBrightness
         
         //Saturation decreases as brightness increases. The range of possible saturations expands as the range of possible hues contracts, and vice-versa.
-        var satRange = (1.0 - abs(hourHue - minuteHue))
-        var backSaturation = 0.5 + (0.5 * satRange)
-        var frontSaturation = 0.5 - (0.5 * satRange)
+        var hueRange = abs(backHue - frontHue)
+        hueRange = (hueRange < 0.5) ? hueRange : 1.0 - hueRange
+        hueRange *= 2.0
+        var satRange = 1.0 - hueRange
+        let satSign: CGFloat = (frontBrightness - backBrightness <= 0) ? 1.0 : -1.0
+        var backSaturation = 0.5 - (satSign * (0.5 * satRange))
+        var frontSaturation = 0.5 + (satSign * (0.5 * satRange))
         
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "h:mm a"
+        println("\(formatter.stringFromDate(currentDate)): backHue = \(backHue), frontHue = \(frontHue), backBrightness = \(backBrightness), frontBrightness = \(frontBrightness), backSat = \(backSaturation), frontSat = \(frontSaturation)")
+        
+        //Now that the ranges are determined, we color each view depending on its location in the tree graph
         for (key, object) in wordViews {
             if let indexPath = key as? [Int] {
                 if let wordView = object as? UIView {
+                    
                     var bDepth = 0
                     for letter in indexPath {
                         if letter == 0 { ++bDepth }
                     }
-                    let depthPct = CGFloat(bDepth) / CGFloat(timeChunks.count - 1)
-                    let hue = hourHue + (depthPct * (minuteHue - hourHue) )
+                    var depthPct = CGFloat(bDepth) / CGFloat(timeChunks.count - 1)
+                    var hueDistance = abs(frontHue - backHue)
+                    if (backHue < frontHue && hueDistance > 0.5) || (backHue >= frontHue && hueDistance <= 0.5) {
+                        hueDistance *= -1.0
+                    }
+                    var hue = backHue + (depthPct * hueDistance) % 1.0
+                    if hue < 0 { hue *= -1.0 }
                     let brightness = backBrightness + (depthPct * (frontBrightness - backBrightness))
                     let saturation = backSaturation + (depthPct * (frontSaturation - backSaturation))
                     let layerColor = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
                     wordView.layer.backgroundColor = layerColor.CGColor
                     
                     //The view's layer has an ongoing animation to adjust its alpha, which uses .backgroundColor as the changing property. We need to go in and reset the animation's toValue and fromValue, using our new color
+                    //addAnimations(indexPath: indexPath, synchronizedCurrentTime: currentDate)
+                    
                     if let animationGroup = wordView.layer.animationForKey("animationSequence") as? CAAnimationGroup {
                         //look for the alpha animation
                         var alphaAnim: CABasicAnimation?
@@ -182,14 +198,15 @@ class ViewController: UIViewController  {
                             //TODO CoreAnimation possibly ignores this
                             wordView.backgroundColor = layerColor // In case the adjustment is being ignored, at least we can correctly set the backgroundColor of the view itself, which will show through whenever the layer's alpha is at a low point.
                         }
+
                     }
                 }
             }
         }
         
         //Adjust the colors of various UI components
-        let backColor = UIColor(hue: hourHue, saturation: backSaturation, brightness: backBrightness, alpha: 1)
-        let frontColor = UIColor(hue: minuteHue, saturation: frontSaturation, brightness: frontBrightness, alpha: 1)
+        let backColor = UIColor(hue: backHue, saturation: backSaturation, brightness: backBrightness, alpha: 1)
+        let frontColor = UIColor(hue: frontHue, saturation: frontSaturation, brightness: frontBrightness, alpha: 1)
         self.view.backgroundColor = backColor
         hourLabel.textColor = frontColor
         secondsLabel.textColor = frontColor
@@ -394,6 +411,24 @@ class ViewController: UIViewController  {
                 resumeLayer(wordView.layer)
             }
         }
+    }
+    
+    //#pragma mark IBActions
+    
+    @IBOutlet weak var hourSlider: UISlider!
+    @IBOutlet weak var minuteSlider: UISlider!
+    
+    @IBAction func sliderDidEndSliding(sender: AnyObject) {
+        var hour = Int(roundf(hourSlider.value))
+        var minute = Int(roundf(minuteSlider.value))
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "HH:mm"
+        var dateString = "\(hour):\(minute)"
+        if let newDate = formatter.dateFromString(dateString) {
+            currentDate = newDate
+        }
+        refreshLabels()
+        refreshColors()
     }
     
     //#pragma mark Helpers

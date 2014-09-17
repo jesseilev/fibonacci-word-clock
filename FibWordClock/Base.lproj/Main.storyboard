@@ -18,40 +18,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ru8-9w-lqr" userLabel="contentContainerView">
-                                <rect key="frame" x="20" y="40" width="280" height="508"/>
+                                <rect key="frame" x="20" y="40" width="280" height="444"/>
                                 <subviews>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewb-Hv-dpO">
-                                        <rect key="frame" x="99" y="36" width="81" height="42"/>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ewb-Hv-dpO">
+                                        <rect key="frame" x="99" y="20" width="81" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and 22" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmj-Dc-U5r">
-                                        <rect key="frame" x="87" y="430" width="106" height="42"/>
+                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and 22" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Xmj-Dc-U5r">
+                                        <rect key="frame" x="87" y="382" width="106" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JJA-kP-yAb" userLabel="wordContainerView">
-                                        <rect key="frame" x="0.0" y="114" width="280" height="280"/>
+                                        <rect key="frame" x="0.0" y="82" width="280" height="280"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="JJA-kP-yAb" secondAttribute="height" multiplier="1:1" id="VmZ-GB-P5F"/>
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIE-h9-elX" userLabel="autolayout spacer 1">
-                                        <rect key="frame" x="0.0" y="78" width="280" height="36"/>
+                                        <rect key="frame" x="0.0" y="62" width="280" height="20"/>
                                         <color key="backgroundColor" red="0.42536973950000001" green="0.67260044809999997" blue="0.99881821869999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUB-zd-adR" userLabel="autolayout spacer 2">
-                                        <rect key="frame" x="0.0" y="394" width="280" height="36"/>
+                                        <rect key="frame" x="0.0" y="362" width="280" height="20"/>
                                         <color key="backgroundColor" red="0.42536973950000001" green="0.67260044809999997" blue="0.99881821869999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Zy-eu-rrw" userLabel="autolayout spacer 3">
-                                        <rect key="frame" x="0.0" y="472" width="280" height="36"/>
+                                        <rect key="frame" x="0.0" y="424" width="280" height="20"/>
                                         <color key="backgroundColor" red="0.42536973950000001" green="0.67260044809999997" blue="0.99881821869999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9VH-tK-S6P" userLabel="autolayout spacer 4">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="20"/>
                                         <color key="backgroundColor" red="0.42536973950000001" green="0.67260044809999997" blue="0.99881821869999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
@@ -82,11 +82,35 @@
                                     <constraint firstItem="ewb-Hv-dpO" firstAttribute="top" secondItem="9VH-tK-S6P" secondAttribute="bottom" id="zdI-Db-PyB"/>
                                 </constraints>
                             </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="12" minValue="0.0" maxValue="24" translatesAutoresizingMaskIntoConstraints="NO" id="1do-Z5-DJH" userLabel="hour slider">
+                                <rect key="frame" x="18" y="492" width="284" height="31"/>
+                                <color key="minimumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="sliderDidEndSliding:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="Q7e-9E-uNV"/>
+                                    <action selector="sliderDidEndSliding:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p6w-H0-64A"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="XFV-r9-civ" userLabel="minute slider">
+                                <rect key="frame" x="18" y="530" width="284" height="31"/>
+                                <color key="minimumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="thumbTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="sliderDidEndSliding:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QKm-mj-NET"/>
+                                    <action selector="sliderDidEndSliding:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="fYD-eQ-9FU"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Ru8-9w-lqr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="7f4-aa-Zhz"/>
+                            <constraint firstItem="Ru8-9w-lqr" firstAttribute="trailing" secondItem="XFV-r9-civ" secondAttribute="trailing" id="Ctf-gT-QI4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XFV-r9-civ" secondAttribute="bottom" constant="8" id="R8F-c0-XHW"/>
+                            <constraint firstItem="1do-Z5-DJH" firstAttribute="top" secondItem="Ru8-9w-lqr" secondAttribute="bottom" constant="8" id="Yrn-Rs-usK"/>
+                            <constraint firstItem="1do-Z5-DJH" firstAttribute="trailing" secondItem="XFV-r9-civ" secondAttribute="trailing" id="eTE-b0-K1S"/>
+                            <constraint firstItem="1do-Z5-DJH" firstAttribute="leading" secondItem="XFV-r9-civ" secondAttribute="leading" id="fAH-lJ-Jed"/>
+                            <constraint firstItem="XFV-r9-civ" firstAttribute="top" secondItem="1do-Z5-DJH" secondAttribute="bottom" constant="8" id="gEC-4j-Cai"/>
+                            <constraint firstItem="Ru8-9w-lqr" firstAttribute="leading" secondItem="XFV-r9-civ" secondAttribute="leading" id="naS-U1-W2H"/>
                             <constraint firstAttribute="trailing" secondItem="Ru8-9w-lqr" secondAttribute="trailing" constant="20" id="nmG-h3-k8y"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ru8-9w-lqr" secondAttribute="bottom" constant="20" id="oQW-CE-WnP"/>
                             <constraint firstItem="Ru8-9w-lqr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="yMP-Uq-Ztn"/>
                         </constraints>
                     </view>
@@ -97,6 +121,8 @@
                     </simulatedScreenMetrics>
                     <connections>
                         <outlet property="hourLabel" destination="ewb-Hv-dpO" id="f9A-RC-Z6A"/>
+                        <outlet property="hourSlider" destination="1do-Z5-DJH" id="gB0-M1-pg1"/>
+                        <outlet property="minuteSlider" destination="XFV-r9-civ" id="cbc-ql-cL4"/>
                         <outlet property="secondsLabel" destination="Xmj-Dc-U5r" id="gf9-HA-es5"/>
                         <outlet property="wordContainerView" destination="JJA-kP-yAb" id="JIU-GJ-mRx"/>
                     </connections>
