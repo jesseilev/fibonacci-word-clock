@@ -13,6 +13,7 @@ class ViewController: UIViewController  {
     
     @IBOutlet var hourLabel: UILabel!
     @IBOutlet var secondsLabel: UILabel!
+    
     @IBOutlet var wordContainerView: UIView!
     
     var rootWord = FibonacciWord.rootWord()

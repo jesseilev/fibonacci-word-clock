@@ -9,6 +9,18 @@
 import Foundation
 import UIKit
 
+extension Float {
+    static func random() -> Float {
+        return Float(arc4random()) / Float(UINT32_MAX)
+    }
+}
+
+extension CGFloat {
+    static func random() -> CGFloat {
+        return CGFloat(Float.random())
+    }
+}
+
 extension UIView {
     class func autolayoutView() -> UIView {
         let view = UIView()
@@ -96,4 +108,31 @@ extension UIColor {
         let b = CGFloat(arc4random() % 255) / 255.0
         return UIColor(red: r, green: g, blue: b, alpha: 1)
     }
+
+    func colorWithSwappedRGBAComponent(index: Int, newValue: CGFloat) -> UIColor {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        var components = [red, green, blue, alpha]
+        if index >= 0 && index < 4 {
+            components[index] = newValue
+        }
+        return UIColor(red: components[0], green: components[1], blue: components[2], alpha: components[3])
+    }
+
+    func colorWithRedComponent(red: CGFloat) -> UIColor {
+        return self.colorWithSwappedRGBAComponent(0, newValue: red)
+    }
+
+    func colorWithGreenComponent(green: CGFloat) -> UIColor {
+        return self.colorWithSwappedRGBAComponent(1, newValue: green)
+    }
+
+    func colorWithBlueComponent(blue: CGFloat) -> UIColor {
+        return self.colorWithSwappedRGBAComponent(2, newValue: blue)
+    }
 }
+
+

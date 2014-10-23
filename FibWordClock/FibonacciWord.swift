@@ -30,6 +30,7 @@ class FibonacciWord {
     
     var letter: FibonacciLetter
     var superword: FibonacciWord?
+    var depth: Int = 0
     
     init(letter: FibonacciLetter, superword: FibonacciWord?) {
         self.letter = letter
@@ -38,6 +39,7 @@ class FibonacciWord {
             indexPath = uwSuperword.indexPath
             let myIndex: Int = (self.letter == .B) ? 0 : 1
             indexPath.append(myIndex)
+            self.depth = uwSuperword.depth + 1
         }
     }
     
@@ -75,11 +77,11 @@ class FibonacciWord {
     */
     let indexPath = [Int]()
     
-    /*
-    @lazy var indexPathAsString: String = {
-        return self.indexPath.bridgeToObjectiveC().componentsJoinedByString("")
+    
+    lazy var indexPathAsString: String = {
+        return (self.indexPath as NSArray).componentsJoinedByString("")
     }()
-    */
+
     func subwordAtIndexPath(var indexPath: [Int]) -> FibonacciWord? {
         var subword: FibonacciWord? = self
         if let firstIndex = indexPath.first? {
@@ -118,6 +120,55 @@ class FibonacciWord {
         }
         return letters
     }
+    
+    func subwords(#depth: Int) -> [FibonacciWord] {
+        var words = [FibonacciWord]()
+        if depth == 0 { words = [self] }
+        else {
+            words = letterBSubword.subwords(depth: depth - 1)
+            if let uwA = letterASubword {
+                words += uwA.subwords(depth: depth - 1)
+            }
+        }
+        return words
+    }
+    
+    lazy var next: FibonacciWord? = {
+        var next: FibonacciWord?
+        if let uwSuperword = self.superword {
+            if self.letter == .B {
+                if let uwA = uwSuperword.letterASubword {
+                    next = uwA
+                }
+            }
+            if next == nil {
+                if let nextSuper = uwSuperword.next {
+                    next = nextSuper.letterBSubword
+                }
+            }
+        }
+        return next
+    }()
+    
+    lazy var previous: FibonacciWord? = {
+        var prev: FibonacciWord?
+        if let uwSuperword = self.superword {
+            if self.letter == .A {
+                prev = uwSuperword.letterBSubword
+            }
+            else {
+                if let prevSuper = uwSuperword.previous {
+                    if let prevA = prevSuper.letterASubword {
+                        prev = prevA
+                    }
+                    else {
+                        prev = prevSuper.letterBSubword
+                    }
+                }
+            }
+        }
+        return prev
+    }()
     
 }
 
